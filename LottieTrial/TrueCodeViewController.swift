@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TrueCodeViewController.swift
 //  LottieTrial
 //
 //  Created by Timotius Leonardo Lianoto on 06/06/23.
@@ -8,9 +8,10 @@
 import UIKit
 import Lottie
 
-class ViewController: UIViewController {
+class TrueCodeViewController: UIViewController {
     
-    var animation: LottieAnimationView?
+    // var animation: LottieAnimationView?
+    var animationContainer: AnimationContainerView?
     lazy var buttonPlay: UIButton = UIButton()
     let urlInString: String = "https://assets9.lottiefiles.com/packages/lf20_1xU9Bzegk7.json"
     
@@ -37,23 +38,29 @@ class ViewController: UIViewController {
     
     func playRandomAnimation() {
         let url = URL(string: urlInString)
-        animation = LottieAnimationView(url: url!,
+        animationContainer = AnimationContainerView()
+        self.view.addSubview(animationContainer!)
+        animationContainer?.frame = self.view.frame
+        animationContainer?.animation = LottieAnimationView(url: url!,
                                         closure: { _ in
             // Completions
         })
         
-        animation?.animationLoaded = { animationView, animation in
+        animationContainer?.animation?.animationLoaded = { animationView, animation in
             animationView.play { [weak self] _ in
-                animationView.removeFromSuperview()
-                self?.animation = nil
+                self?.animationContainer?.removeFromSuperview()
+                self?.animationContainer = nil
             }
         }
         
-        guard let animation = animation else { return }
+        // guard let animation = animation else { return }
         
-        self.view.addSubview(animation)
-        view.layoutIfNeeded()
-        animation.frame = self.view.frame
+        // self.animationContainer?.addSubview(animation)
+        // view.layoutIfNeeded()
+        // animation.frame = self.animationContainer!.frame
+        
+         animationContainer?.setupAnimation()
     }
 }
+
 
