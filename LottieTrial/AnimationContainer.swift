@@ -17,11 +17,4 @@ class AnimationContainerView: UIView {
         layoutIfNeeded()
         animation.frame = self.frame
     }
-    
-    func removeAnimation() {
-        animation?.stop()
-        animation?.layer.removeAllAnimations()
-        animation?.animationLoaded = nil
-        animation?.animation = nil
-    }
 }

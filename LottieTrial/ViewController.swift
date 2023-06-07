@@ -44,6 +44,7 @@ class ViewController: UIViewController {
         
         animation?.animationLoaded = { animationView, animation in
             animationView.play { [weak self] _ in
+                // Remove animation view from superview
                 animationView.removeFromSuperview()
                 self?.animation = nil
             }
