@@ -17,6 +17,9 @@ class TrueCodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .lightGray
+        
         self.view.addSubview(buttonPlay)
         buttonPlay.translatesAutoresizingMaskIntoConstraints = false
         buttonPlay.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -27,7 +30,6 @@ class TrueCodeViewController: UIViewController {
         buttonPlay.setTitle("Play Animation", for: .normal)
         buttonPlay.setTitleColor(.blue, for: .normal)
         buttonPlay.titleLabel?.textAlignment = .center
-        
         
         buttonPlay.addTarget(self, action: #selector(onButtonPlayTapped), for: .touchUpInside)
     }
