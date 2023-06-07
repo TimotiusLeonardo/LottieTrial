@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class ViewController: UIViewController {
+class FalseCodeViewController: UIViewController {
     
     var animation: LottieAnimationView?
     lazy var buttonPlay: UIButton = UIButton()
@@ -37,12 +37,12 @@ class ViewController: UIViewController {
     
     func playRandomAnimation() {
         let url = URL(string: urlInString)
-        animation = LottieAnimationView(url: url!,
+        let animation = LottieAnimationView(url: url!,
                                         closure: { _ in
             // Completions
         })
         
-        animation?.animationLoaded = { animationView, animation in
+        animation.animationLoaded = { animationView, animation in
             animationView.play { [weak self] _ in
                 // Remove animation view from superview
                 animationView.removeFromSuperview()
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
             }
         }
         
-        guard let animation = animation else { return }
+//        guard let animation = animation else { return }
         
         self.view.addSubview(animation)
         view.layoutIfNeeded()

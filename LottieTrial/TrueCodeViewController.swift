@@ -11,7 +11,7 @@ import Lottie
 class TrueCodeViewController: UIViewController {
     
     // var animation: LottieAnimationView?
-    var animationContainer: AnimationContainerView?
+    var animationContainer: UIView?
     lazy var buttonPlay: UIButton = UIButton()
     let urlInString: String = "https://assets9.lottiefiles.com/packages/lf20_1xU9Bzegk7.json"
     
@@ -40,15 +40,15 @@ class TrueCodeViewController: UIViewController {
     
     func playRandomAnimation() {
         let url = URL(string: urlInString)
-        animationContainer = AnimationContainerView()
+        animationContainer = UIView()
         self.view.addSubview(animationContainer!)
         animationContainer?.frame = self.view.frame
-        animationContainer?.animation = LottieAnimationView(url: url!,
+        let animation = LottieAnimationView(url: url!,
                                         closure: { _ in
             // Completions
         })
         
-        animationContainer?.animation?.animationLoaded = { animationView, animation in
+        animation.animationLoaded = { animationView, animation in
             animationView.play { [weak self] _ in
                 self?.animationContainer?.removeFromSuperview()
                 self?.animationContainer = nil
@@ -57,11 +57,11 @@ class TrueCodeViewController: UIViewController {
         
         // guard let animation = animation else { return }
         
-        // self.animationContainer?.addSubview(animation)
-        // view.layoutIfNeeded()
-        // animation.frame = self.animationContainer!.frame
+         self.animationContainer?.addSubview(animation)
+         view.layoutIfNeeded()
+         animation.frame = self.animationContainer!.frame
         
-         animationContainer?.setupAnimation()
+//         animationContainer?.setupAnimation()
     }
 }
 
